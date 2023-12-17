@@ -40,5 +40,5 @@ USA|dollar|1|USD|22.364
 `)
 }
 
-export const convertFromCurrency = (amount: number, currencyData: CurrencyData) =>
-  (currencyData.amount * amount) / currencyData.rate
+export const convertFromCzk = (amount: number, currencyData: CurrencyData) =>
+  (amount / currencyData.rate) * currencyData.amount
