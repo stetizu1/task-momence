@@ -1,22 +1,7 @@
 import { compactMap, fromEntries } from '../utility'
+import { ExchangeRatesData, CurrencyData } from '../../types/ExchangeRatesData'
 
-type CurrencyCode = string
-type CurrencyData = {
-  currency: string
-  country: string
-  amount: number
-  rate: number
-}
-
-export type CnbData = {
-  revision: {
-    date: string
-    revisionId: string
-  }
-  currencyData: Record<CurrencyCode, CurrencyData>
-}
-
-export const parseCnbDataString = (dataString: string): CnbData | null => {
+export const parseCnbDataString = (dataString: string): ExchangeRatesData | null => {
   const rows = dataString.trim().split('\n')
   const [revisionRow, descriptionRow, ...currencyRows] = rows
   if (!revisionRow || !descriptionRow) return null

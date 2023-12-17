@@ -1,6 +1,7 @@
 // TODO
 
 import { parseCnbDataString } from '../../helpers/cnbParser/parser'
+import { CurrencyData } from '../../types/ExchangeRatesData'
 
 export const fetchCnbData = async () => {
   return parseCnbDataString(`15 Dec 2023 #242
@@ -38,3 +39,6 @@ United Kingdom|pound|1|GBP|28.522
 USA|dollar|1|USD|22.364
 `)
 }
+
+export const convertFromCurrency = (amount: number, currencyData: CurrencyData) =>
+  (currencyData.amount * amount) / currencyData.rate

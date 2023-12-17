@@ -1,6 +1,7 @@
-import { CnbData, parseCnbDataString } from './parser'
+import { parseCnbDataString } from './parser'
+import { ExchangeRatesData } from '../../types/ExchangeRatesData'
 
-const exampleDataString = `15 Dec 2023 #242
+const exampleCNBDataString = `15 Dec 2023 #242
 Country|Currency|Amount|Code|Rate
 Australia|dollar|1|AUD|15.004
 Brazil|real|1|BRL|4.528
@@ -70,10 +71,10 @@ const result = {
     GBP: { currency: 'pound', country: 'United Kingdom', amount: 1, rate: 28.522 },
     USD: { currency: 'dollar', country: 'USA', amount: 1, rate: 22.364 },
   },
-} satisfies CnbData
+} satisfies ExchangeRatesData
 
 describe('Parser', () => {
   it('should parse CNB example data correctly', () => {
-    expect(parseCnbDataString(exampleDataString)).toEqual(result)
+    expect(parseCnbDataString(exampleCNBDataString)).toEqual(result)
   })
 })
