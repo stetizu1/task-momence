@@ -10,7 +10,7 @@ type CurrencyData = {
 
 export type CnbData = {
   revision: {
-    date: Date
+    date: string
     revisionId: string
   }
   currencyData: Record<CurrencyCode, CurrencyData>
@@ -37,7 +37,7 @@ export const parseCnbDataString = (dataString: string): CnbData | null => {
 
   return {
     revision: {
-      date: new Date(revisionValues[0]),
+      date: revisionValues[0].trim(),
       revisionId: revisionValues[1],
     },
     currencyData,

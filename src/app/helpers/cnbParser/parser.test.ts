@@ -36,7 +36,7 @@ USA|dollar|1|USD|22.364
 `
 
 const result = {
-  revision: { date: new Date('15 Dec 2023'), revisionId: '242' },
+  revision: { date: '15 Dec 2023', revisionId: '242' },
   currencyData: {
     AUD: { currency: 'dollar', country: 'Australia', amount: 1, rate: 15.004 },
     BRL: { currency: 'real', country: 'Brazil', amount: 1, rate: 4.528 },
@@ -73,7 +73,7 @@ const result = {
 } satisfies CnbData
 
 describe('Parser', () => {
-  it('should parse correctly', () => {
+  it('should parse CNB example data correctly', () => {
     expect(parseCnbDataString(exampleDataString)).toEqual(result)
   })
 })
