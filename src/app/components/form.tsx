@@ -45,7 +45,7 @@ export const StyledSelect = styled.select`
 `
 
 export const StyledLabel = styled.label`
-    font-size: ${fontSize.label};
-    margin: 6px 8px -2px;
-color: ${palette.input.labelTextColor};
+  font-size: ${fontSize.label};
+  margin: 6px 8px -2px;
+  color: ${palette.input.labelTextColor};
 `

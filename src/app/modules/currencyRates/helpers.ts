@@ -3,8 +3,9 @@
 import { parseCnbDataString } from '../../helpers/cnbParser/parser'
 import { CurrencyData } from '../../types/ExchangeRatesData'
 
-export const fetchCnbData = async () => {
-  return parseCnbDataString(`15 Dec 2023 #242
+// eslint-disable-next-line @typescript-eslint/require-await
+export const fetchCnbData = async () =>
+  parseCnbDataString(`15 Dec 2023 #242
 Country|Currency|Amount|Code|Rate
 Australia|dollar|1|AUD|15.004
 Brazil|real|1|BRL|4.528
@@ -38,7 +39,6 @@ Turkey|lira|1|TRY|0.770
 United Kingdom|pound|1|GBP|28.522
 USA|dollar|1|USD|22.364
 `)
-}
 
 export const convertFromCzk = (amount: number, currencyData: CurrencyData) =>
   (amount / currencyData.rate) * currencyData.amount

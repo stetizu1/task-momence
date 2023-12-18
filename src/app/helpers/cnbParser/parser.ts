@@ -1,5 +1,5 @@
+import { CurrencyData, ExchangeRatesData } from '../../types/ExchangeRatesData'
 import { compactMap, fromEntries } from '../utility'
-import { ExchangeRatesData, CurrencyData } from '../../types/ExchangeRatesData'
 
 export const parseCnbDataString = (dataString: string): ExchangeRatesData | null => {
   const rows = dataString.trim().split('\n')
@@ -9,16 +9,18 @@ export const parseCnbDataString = (dataString: string): ExchangeRatesData | null
   const revisionValues = revisionRow.split('#')
   if (!revisionValues[0] || !revisionValues[1]) return null
 
-  const currencyData = fromEntries(compactMap(currencyRows, (row) => {
-    const [country, currency, amountString, code, rateString] = row.split('|')
-    if (!country || !currency || !amountString || !code || !rateString) return null
+  const currencyData = fromEntries(
+    compactMap(currencyRows, (row) => {
+      const [country, currency, amountString, code, rateString] = row.split('|')
+      if (!country || !currency || !amountString || !code || !rateString) return null
 
-    const amount = Number(amountString)
-    const rate = Number(rateString)
-    if (Number.isNaN(amount) || Number.isNaN(rate)) return null
+      const amount = Number(amountString)
+      const rate = Number(rateString)
+      if (Number.isNaN(amount) || Number.isNaN(rate)) return null
 
-    return [code, { currency, country, amount, rate }] satisfies [string, CurrencyData]
-  }))
+      return [code, { currency, country, amount, rate }] satisfies [string, CurrencyData]
+    }),
+  )
 
   return {
     revision: {

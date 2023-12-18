@@ -12,33 +12,29 @@ type CurrencyDataDisplayProps = {
 
 const selectedClassName = 'selected'
 
-export const CurrencyDataDisplay: FC<CurrencyDataDisplayProps> = ({ data, selectedCurrency, setSelectedCurrency }) => {
-  return (
-    <List>
-      <ListHeader>Overview</ListHeader>
-      {Object.entries(data.currencyData).map(([key, value]) => {
-        return (
-          <Item
-            key={key}
-            onClick={() => setSelectedCurrency(key)}
-            className={selectedCurrency === key ? selectedClassName : ''}
-          >
-            <div>
-              <FirstLine>{key}</FirstLine>
-              <SecondLine>{`${value.currency} (${value.country})`}</SecondLine>
-            </div>
-            <div>
-              <FirstLine>{`${value.rate} CZK`}</FirstLine>
-              <SecondLine>
-                / {value.amount} {key}
-              </SecondLine>
-            </div>
-          </Item>
-        )
-      })}
-    </List>
-  )
-}
+export const CurrencyDataDisplay: FC<CurrencyDataDisplayProps> = ({ data, selectedCurrency, setSelectedCurrency }) => (
+  <List>
+    <ListHeader>Overview</ListHeader>
+    {Object.entries(data.currencyData).map(([key, value]) => (
+      <Item
+        key={key}
+        onClick={() => setSelectedCurrency(key)}
+        className={selectedCurrency === key ? selectedClassName : ''}
+      >
+        <div>
+          <FirstLine>{key}</FirstLine>
+          <SecondLine>{`${value.currency} (${value.country})`}</SecondLine>
+        </div>
+        <div>
+          <FirstLine>{`${value.rate} CZK`}</FirstLine>
+          <SecondLine>
+            / {value.amount} {key}
+          </SecondLine>
+        </div>
+      </Item>
+    ))}
+  </List>
+)
 
 const List = styled.div`
   display: flex;

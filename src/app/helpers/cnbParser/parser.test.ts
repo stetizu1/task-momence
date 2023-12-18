@@ -1,5 +1,5 @@
-import { parseCnbDataString } from './parser'
 import { ExchangeRatesData } from '../../types/ExchangeRatesData'
+import { parseCnbDataString } from './parser'
 
 const exampleCNBDataString = `15 Dec 2023 #242
 Country|Currency|Amount|Code|Rate

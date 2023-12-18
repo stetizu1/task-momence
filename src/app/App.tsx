@@ -3,13 +3,11 @@ import { styled } from 'styled-components'
 import { CnbRates } from './modules/currencyRates/CnbRates'
 import { palette } from './styles/palette'
 
-export const App: FC = () => {
-  return (
-    <Page>
-      <CnbRates />
-    </Page>
-  )
-}
+export const App: FC = () => (
+  <Page>
+    <CnbRates />
+  </Page>
+)
 
 const Page = styled.div`
   background-color: ${palette.background};
@@ -19,7 +17,7 @@ const Page = styled.div`
   color: ${palette.textColor};
   font-family: sans-serif;
   display: flex;
-    justify-content: center;
+  justify-content: center;
   & div {
     max-width: 760px;
   }
