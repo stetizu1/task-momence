@@ -1,4 +1,9 @@
+import { Volcano } from '@mui/icons-material'
+import { CircularProgress } from '@mui/material'
 import { Dispatch, ReactNode, useCallback, useEffect, useState } from 'react'
+import { styled } from 'styled-components'
+import { fontSize } from '../../styles/fontSize'
+import { palette } from '../../styles/palette'
 
 type FetchingComponentProps<T> = {
   fetch: () => Promise<T | null>
@@ -30,10 +35,51 @@ export const FetchingComponent = <T,>({ fetch, setData, children }: FetchingComp
   }, [])
 
   if (loadState === 'loading') {
-    return <div>Loading...</div>
+    return (
+      <CenterBox>
+        <CircularProgress />
+      </CenterBox>
+    )
   }
   if (loadState === 'error') {
-    return <div>Internal server error</div>
+    return (
+      <ErrorPage>
+        <ErrorPageHeader>Error</ErrorPageHeader>
+        <ErrorText>Oops! Something went wrong...</ErrorText>
+        <Volcano style={{ color: palette.errorText, fontSize: '50px', padding: '10px', alignSelf: 'center' }} />
+        <ErrorSmallText>
+          We are having some technical difficulties. Please try to refresh the page or come back later.
+        </ErrorSmallText>
+      </ErrorPage>
+    )
   }
   return <>{children}</>
 }
+
+const CenterBox = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+`
+
+const ErrorPage = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const ErrorPageHeader = styled.div`
+  font-size: ${fontSize.subHeader};
+  color: ${palette.errorText};
+  padding: 10px 0 12px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid ${palette.errorText};
+`
+
+const ErrorText = styled.div`
+  color: ${palette.errorText};
+`
+
+const ErrorSmallText = styled.div`
+  font-size: ${fontSize.label};
+  color: ${palette.dimmedText};
+`

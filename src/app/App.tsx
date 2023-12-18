@@ -14,7 +14,7 @@ const Page = styled.div`
   margin: 0;
   padding: 8px;
   min-height: 100vh;
-  color: ${palette.textColor};
+  color: ${palette.text};
   font-family: sans-serif;
   display: flex;
   justify-content: center;

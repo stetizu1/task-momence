@@ -1,6 +1,10 @@
 export const palette = {
   background: '#444343',
-  textColor: '#eceaea',
+  selectedBackground: '#595858',
+  border: '#595858',
+  text: '#eceaea',
+  errorText: '#cb5757',
+  dimmedText: '#a1a1a1',
   input: {
     textColor: '#dadada',
     labelTextColor: '#d8d8d8',
@@ -9,7 +13,4 @@ export const palette = {
     disabledBackgroundColor: '#545353',
     selectedOptionBackgroundColor: '#595858',
   },
-  border: '#595858',
-  selectedBackground: '#595858',
-  dimmedText: '#a1a1a1',
 } as const
