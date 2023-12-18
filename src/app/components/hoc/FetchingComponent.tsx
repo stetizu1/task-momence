@@ -1,17 +1,17 @@
 import { Volcano } from '@mui/icons-material'
 import { CircularProgress } from '@mui/material'
-import { Dispatch, ReactNode, useCallback, useEffect, useState } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 import { fontSize } from '../../styles/fontSize'
 import { palette } from '../../styles/palette'
 
 type FetchingComponentProps<T> = {
   fetch: () => Promise<T | null>
-  setData: Dispatch<T>
-  children: ReactNode
+  Content: FC<{ data: T }>
 }
 
-export const FetchingComponent = <T,>({ fetch, setData, children }: FetchingComponentProps<T>) => {
+export const FetchingComponent = <T,>({ fetch, Content }: FetchingComponentProps<T>) => {
+  const [fetchedData, setFetchedData] = useState<T>()
   const [loadState, setLoadState] = useState<'loading' | 'loaded' | 'error'>('loading')
 
   const callFetch = useCallback(async () => {
@@ -23,7 +23,7 @@ export const FetchingComponent = <T,>({ fetch, setData, children }: FetchingComp
         return
       }
 
-      setData(data)
+      setFetchedData(data)
       setLoadState('loaded')
     } catch (e) {
       setLoadState('error')
@@ -41,7 +41,7 @@ export const FetchingComponent = <T,>({ fetch, setData, children }: FetchingComp
       </CenterBox>
     )
   }
-  if (loadState === 'error') {
+  if (loadState === 'error' || !fetchedData) {
     return (
       <ErrorPage>
         <ErrorPageHeader>Error</ErrorPageHeader>
@@ -53,7 +53,7 @@ export const FetchingComponent = <T,>({ fetch, setData, children }: FetchingComp
       </ErrorPage>
     )
   }
-  return <>{children}</>
+  return <Content data={fetchedData} />
 }
 
 const CenterBox = styled.div`

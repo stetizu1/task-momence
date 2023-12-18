@@ -1,3 +1,4 @@
+import { Refresh } from '@mui/icons-material'
 import { Dispatch, FC } from 'react'
 import { styled } from 'styled-components'
 import { fontSize } from '../../../styles/fontSize'
@@ -14,7 +15,16 @@ const selectedClassName = 'selected'
 
 export const CurrencyDataDisplay: FC<CurrencyDataDisplayProps> = ({ data, selectedCurrency, setSelectedCurrency }) => (
   <List>
-    <ListHeader>Overview</ListHeader>
+    <ListHeader>
+      <div>Overview</div>
+      <ReloadBox>
+        <Refresh
+          onClick={() => {
+            location.reload()
+          }}
+        />
+      </ReloadBox>
+    </ListHeader>
     {Object.entries(data.currencyData).map(([key, value]) => (
       <Item
         key={key}
@@ -47,6 +57,16 @@ const ListHeader = styled.div`
   padding: 5px 0;
   border-bottom: 1px solid ${palette.border};
   margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+`
+
+const ReloadBox = styled.div`
+  padding: 8px 8px 2px;
+  border-radius: 10px;
+  &:hover {
+    background-color: ${palette.border};
+  }
 `
 
 const Item = styled.div`

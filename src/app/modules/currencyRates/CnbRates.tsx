@@ -12,7 +12,7 @@ type CnbRatesComponentProps = {
 }
 
 export const notSelected = 'notSelected'
-const CnbRatesComponent: FC<CnbRatesComponentProps> = ({ data }) => {
+const CnbRatesPage: FC<CnbRatesComponentProps> = ({ data }) => {
   const [selectedCurrency, setSelectedCurrency] = useState<string>(notSelected)
   return (
     <>
@@ -30,18 +30,12 @@ const CnbRatesComponent: FC<CnbRatesComponentProps> = ({ data }) => {
   )
 }
 
-export const CnbRates: FC = () => {
-  const [cnbData, setCnbData] = useState<ExchangeRatesData>()
-
-  return (
-    <div>
-      <Header>Czech National Bank currency exchange rates</Header>
-      <FetchingComponent fetch={fetchCnbData} setData={setCnbData}>
-        {cnbData ? <CnbRatesComponent data={cnbData} /> : null}
-      </FetchingComponent>
-    </div>
-  )
-}
+export const CnbRates: FC = () => (
+  <div>
+    <Header>Czech National Bank currency exchange rates</Header>
+    <FetchingComponent fetch={fetchCnbData} Content={CnbRatesPage} />
+  </div>
+)
 
 const Header = styled.div`
   font-size: 2em;
