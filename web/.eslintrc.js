@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   extends: ['../.eslintrc.js', 'plugin:react-hooks/recommended'],
-  plugins: ['react', 'react-hooks' ],
+  plugins: ['react', 'react-hooks'],
   parserOptions: {
     project: 'tsconfig.json',
   },
@@ -13,5 +13,4 @@ module.exports = {
     jsdom: true,
     JSX: true,
   },
-  ignorePatterns: ['src/assets/locales/', 'public/config.js'],
 }

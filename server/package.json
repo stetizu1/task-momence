@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Momence app server",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json --sourceMap --skipLibCheck --outDir ./build"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.10.5"
+  }
+}

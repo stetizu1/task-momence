@@ -1,9 +1,16 @@
 {
   "extends": "../tsconfig.json",
+  "jsx": "react-jsx",
   "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
     "outDir": "build",
     "rootDir": "src",
-    "isolatedModules": true
+    "allowJs": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "target": "es5"
   },
-  "include": ["src"],
+  "include": ["src", ".eslintrc.js"],
 }

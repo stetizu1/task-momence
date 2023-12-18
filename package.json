@@ -2,9 +2,14 @@
   "name": "momence",
   "description": "Task for Momence",
   "scripts": {
-    "web": "npm run start --workspace web"
+    "web:dev": "npm run start --workspace web",
+    "server:build": "npm run build --workspace server"
   },
   "workspaces": [
-    "web"
-  ]
+    "web",
+    "server"
+  ],
+  "dependencies": {
+    "typescript": "^4.9.5"
+  }
 }
