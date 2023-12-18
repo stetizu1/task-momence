@@ -31,7 +31,7 @@ module.exports = {
     sourceType: 'module',
     project: 'tsconfig.json',
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'import'],
+  plugins: ['@typescript-eslint', 'prettier', 'import'],
   rules: {
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],

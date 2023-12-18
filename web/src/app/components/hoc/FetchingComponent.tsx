@@ -28,11 +28,11 @@ export const FetchingComponent = <T,>({ fetch, Content }: FetchingComponentProps
     } catch (e) {
       setLoadState('error')
     }
-  }, [])
+  }, [fetch])
 
   useEffect(() => {
     void callFetch()
-  }, [])
+  }, [callFetch])
 
   if (loadState === 'loading') {
     return (
