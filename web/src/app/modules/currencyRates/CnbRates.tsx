@@ -1,11 +1,11 @@
 import { FC, useState } from 'react'
 import { styled } from 'styled-components'
 import { FetchingComponent } from '../../components/hoc/FetchingComponent'
+import { config } from '../../config'
 import { palette } from '../../styles/palette'
 import { ExchangeRatesData } from '../../types/ExchangeRatesData'
 import { CurrencyDataDisplay } from './components/CurrencyDataDisplay'
 import { CzkToCurrencyConverter } from './components/CzkToCurrencyConverter'
-import { fetchCnbData } from './helpers'
 
 type CnbRatesComponentProps = {
   data: ExchangeRatesData
@@ -30,12 +30,18 @@ const CnbRatesPage: FC<CnbRatesComponentProps> = ({ data }) => {
   )
 }
 
-export const CnbRates: FC = () => (
-  <div>
-    <Header>Czech National Bank currency exchange rates</Header>
-    <FetchingComponent fetch={fetchCnbData} Content={CnbRatesPage} />
-  </div>
-)
+export const CnbRates: FC = () => {
+  const queryFunction = async () => {
+    const result = await fetch(config.fetchUrls.getCnbData)
+    return (await result.json()) as ExchangeRatesData
+  }
+  return (
+    <div>
+      <Header>Czech National Bank currency exchange rates</Header>
+      <FetchingComponent queryFn={queryFunction} queryKey={'data'} Content={CnbRatesPage} />
+    </div>
+  )
+}
 
 const Header = styled.div`
   font-size: 2em;

@@ -1,47 +1,31 @@
 import { Volcano } from '@mui/icons-material'
 import { CircularProgress } from '@mui/material'
-import { FC, useCallback, useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { FC } from 'react'
 import { styled } from 'styled-components'
 import { fontSize } from '../../styles/fontSize'
 import { palette } from '../../styles/palette'
 
 type FetchingComponentProps<T> = {
-  fetch: () => Promise<T | null>
+  queryKey: string
+  queryFn: () => Promise<T | null>
   Content: FC<{ data: T }>
 }
 
-export const FetchingComponent = <T,>({ fetch, Content }: FetchingComponentProps<T>) => {
-  const [fetchedData, setFetchedData] = useState<T>()
-  const [loadState, setLoadState] = useState<'loading' | 'loaded' | 'error'>('loading')
+export const FetchingComponent = <T,>({ queryKey, queryFn, Content }: FetchingComponentProps<T>) => {
+  const { isLoading, error, data } = useQuery({
+    queryKey: [queryKey],
+    queryFn,
+  })
 
-  const callFetch = useCallback(async () => {
-    try {
-      setLoadState('loading')
-      const data = await fetch()
-      if (data === null) {
-        setLoadState('error')
-        return
-      }
-
-      setFetchedData(data)
-      setLoadState('loaded')
-    } catch (e) {
-      setLoadState('error')
-    }
-  }, [fetch])
-
-  useEffect(() => {
-    void callFetch()
-  }, [callFetch])
-
-  if (loadState === 'loading') {
+  if (isLoading) {
     return (
       <CenterBox>
         <CircularProgress />
       </CenterBox>
     )
   }
-  if (loadState === 'error' || !fetchedData) {
+  if (error || !data) {
     return (
       <ErrorPage>
         <ErrorPageHeader>Error</ErrorPageHeader>
@@ -53,7 +37,7 @@ export const FetchingComponent = <T,>({ fetch, Content }: FetchingComponentProps
       </ErrorPage>
     )
   }
-  return <Content data={fetchedData} />
+  return <Content data={data} />
 }
 
 const CenterBox = styled.div`

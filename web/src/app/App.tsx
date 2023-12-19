@@ -1,12 +1,17 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { FC } from 'react'
 import { styled } from 'styled-components'
 import { CnbRates } from './modules/currencyRates/CnbRates'
 import { palette } from './styles/palette'
 
+const queryClient = new QueryClient()
+
 export const App: FC = () => (
-  <Page>
-    <CnbRates />
-  </Page>
+  <QueryClientProvider client={queryClient}>
+    <Page>
+      <CnbRates />
+    </Page>
+  </QueryClientProvider>
 )
 
 const Page = styled.div`
