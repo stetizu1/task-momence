@@ -1,4 +1,5 @@
 import { Refresh } from '@mui/icons-material'
+import { useQuery } from '@tanstack/react-query'
 import { Dispatch, FC } from 'react'
 import { styled } from 'styled-components'
 import { fontSize } from '../../../styles/fontSize'
@@ -9,18 +10,24 @@ type CurrencyDataDisplayProps = {
   data: ExchangeRatesData
   selectedCurrency: string
   setSelectedCurrency: Dispatch<string>
+  refetch?: ReturnType<typeof useQuery>['refetch']
 }
 
 const selectedClassName = 'selected'
 
-export const CurrencyDataDisplay: FC<CurrencyDataDisplayProps> = ({ data, selectedCurrency, setSelectedCurrency }) => (
+export const CurrencyDataDisplay: FC<CurrencyDataDisplayProps> = ({
+  data,
+  selectedCurrency,
+  setSelectedCurrency,
+  refetch,
+}) => (
   <List>
     <ListHeader>
       <div>Overview</div>
       <ReloadBox>
         <Refresh
-          onClick={() => {
-            location.reload()
+          onClick={async () => {
+            refetch ? await refetch() : location.reload()
           }}
         />
       </ReloadBox>

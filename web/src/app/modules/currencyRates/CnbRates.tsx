@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query'
 import { FC, useState } from 'react'
 import { styled } from 'styled-components'
 import { FetchingComponent } from '../../components/hoc/FetchingComponent'
@@ -9,10 +10,11 @@ import { CzkToCurrencyConverter } from './components/CzkToCurrencyConverter'
 
 type CnbRatesComponentProps = {
   data: ExchangeRatesData
+  refetch?: ReturnType<typeof useQuery>['refetch']
 }
 
 export const notSelected = 'notSelected'
-const CnbRatesPage: FC<CnbRatesComponentProps> = ({ data }) => {
+const CnbRatesPage: FC<CnbRatesComponentProps> = ({ data, refetch }) => {
   const [selectedCurrency, setSelectedCurrency] = useState<string>(notSelected)
   return (
     <>
@@ -21,7 +23,12 @@ const CnbRatesPage: FC<CnbRatesComponentProps> = ({ data }) => {
         selectedCurrency={selectedCurrency}
         setSelectedCurrency={setSelectedCurrency}
       />
-      <CurrencyDataDisplay data={data} selectedCurrency={selectedCurrency} setSelectedCurrency={setSelectedCurrency} />
+      <CurrencyDataDisplay
+        data={data}
+        selectedCurrency={selectedCurrency}
+        setSelectedCurrency={setSelectedCurrency}
+        refetch={refetch}
+      />
       <Footer>
         <div>{data.revision.date}</div>
         <div>(#{data.revision.revisionId})</div>

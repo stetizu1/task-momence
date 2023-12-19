@@ -9,16 +9,16 @@ import { palette } from '../../styles/palette'
 type FetchingComponentProps<T> = {
   queryKey: string
   queryFn: () => Promise<T | null>
-  Content: FC<{ data: T }>
+  Content: FC<{ data: T; refetch?: ReturnType<typeof useQuery>['refetch'] }>
 }
 
 export const FetchingComponent = <T,>({ queryKey, queryFn, Content }: FetchingComponentProps<T>) => {
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, isRefetching, error, data, refetch } = useQuery({
     queryKey: [queryKey],
     queryFn,
   })
 
-  if (isLoading) {
+  if (isLoading || isRefetching) {
     return (
       <CenterBox>
         <CircularProgress />
@@ -37,7 +37,7 @@ export const FetchingComponent = <T,>({ queryKey, queryFn, Content }: FetchingCo
       </ErrorPage>
     )
   }
-  return <Content data={data} />
+  return <Content data={data} refetch={refetch} />
 }
 
 const CenterBox = styled.div`

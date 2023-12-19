@@ -23,7 +23,8 @@ const Page = styled.div`
   font-family: sans-serif;
   display: flex;
   justify-content: center;
-  & div {
+  & > div {
     max-width: 760px;
+    width: 100%;
   }
 `
