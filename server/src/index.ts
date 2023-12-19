@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import express, { Router } from 'express'
 import fetch from 'node-fetch-commonjs'
 import { ErrorCode } from './types/ErrorCode'
+import { parseCnbDataString } from './helpers/cnbParser/parser'
 
 dotenv.config()
 
@@ -16,7 +17,8 @@ router.get('/getCnbData', async (_, res) => {
   try {
     const result = await fetch(url)
     const textResult = await result.text()
-    res.send(textResult)
+    const parsed = parseCnbDataString(textResult)
+    res.send(parsed)
   } catch (e) {
     res.status(ErrorCode.InternalServerError).send('Error while trying to fetch the data')
   }

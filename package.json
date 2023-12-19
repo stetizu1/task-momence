@@ -13,5 +13,17 @@
   ],
   "dependencies": {
     "typescript": "^4.9.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.2",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^27.5.1",
+    "prettier": "3.1.1",
+    "prettier-plugin-organize-imports": "3.2.4"
   }
 }

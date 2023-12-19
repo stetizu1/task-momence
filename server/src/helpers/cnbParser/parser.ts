@@ -1,5 +1,4 @@
-import { compactMap, fromEntries } from 'common'
-import { CurrencyData, ExchangeRatesData } from '../../types/ExchangeRatesData'
+import { compactMap, CurrencyData, ExchangeRatesData, fromEntries } from 'common'
 
 export const parseCnbDataString = (dataString: string): ExchangeRatesData | null => {
   const rows = dataString.trim().split('\n')
