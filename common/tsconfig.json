@@ -2,7 +2,9 @@
   "extends": "../tsconfig.json",
   "include": ["src"],
   "compilerOptions": {
-    "outDir": "./build"
+    "outDir": "./build",
+    "rootDir": "src",
+    "isolatedModules": true
   }
 }
 

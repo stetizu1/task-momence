@@ -3,11 +3,13 @@
   "description": "Task for Momence",
   "scripts": {
     "web:dev": "npm run start --workspace web",
-    "server:build": "npm run build --workspace server"
+    "server:build": "npm run build --workspace server",
+    "common:build": "npm run build --workspace common"
   },
   "workspaces": [
-    "web",
-    "server"
+    "common",
+    "server",
+    "web"
   ],
   "dependencies": {
     "typescript": "^4.9.5"
