@@ -2,9 +2,11 @@
   "name": "momence",
   "description": "Task for Momence",
   "scripts": {
-    "web:dev": "npm run start --workspace web",
+    "common:build": "npm run build --workspace common",
     "server:build": "npm run build --workspace server",
-    "common:build": "npm run build --workspace common"
+    "server:dev": "npm run start-dev --workspace server",
+    "server:start": "npm run start --workspace server",
+    "web:start": "npm run start --workspace web"
   },
   "workspaces": [
     "common",
