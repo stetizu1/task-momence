@@ -1,13 +1,9 @@
 # CNB data reader
 
 ## Setup
-First install dependencies with 
+First install dependencies and build common with 
 ```
 npm i
-```
-Then build common folder with
-```
-npm run common:build
 ```
 
 ## Development
